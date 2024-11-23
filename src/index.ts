@@ -10,13 +10,15 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+var windows: BrowserWindow = null;
+
 const createWindow = (): void => {
-  // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  windows = new BrowserWindow({
     height: 600,
     width: 800,
     resizable: false,
     autoHideMenuBar: true,
+
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: false,
@@ -24,7 +26,7 @@ const createWindow = (): void => {
     },
   });
 
-  const session = mainWindow.webContents.session;
+  const session = windows.webContents.session;
 
   session.webRequest.onHeadersReceived((details, callback) => {
     callback({
@@ -37,20 +39,31 @@ const createWindow = (): void => {
     });
   });
 
-  // and load the index.html of the app.
-  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+  windows.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 };
+const gotTheLock = app.requestSingleInstanceLock();
 
-app.on('ready', createWindow);
+if (!gotTheLock) {
+  app.quit();
+} else {
+  app.on('second-instance', () => {
+    if (windows) {
+      if (windows.isMinimized()) windows.restore();
+      windows.focus();
+    }
+  });
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
-  }
-});
+  app.on('ready', createWindow);
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    createWindow();
-  }
-});
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') {
+      app.quit();
+    }
+  });
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      createWindow();
+    }
+  });
+}
