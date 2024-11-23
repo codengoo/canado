@@ -1,11 +1,10 @@
+import { ENoteState, INote } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../../store';
-import { fetchNotes } from './thunks';
-
-interface Note {}
+import { createNote, fetchNotes, updateNoteState } from './thunks';
 
 interface NoteState {
-  notes: Note[];
+  notes: INote[];
   loading: boolean;
   errors: string[];
 }
@@ -43,12 +42,31 @@ export const noteSlice = createSlice({
       state.loading = false;
       // state.errors = action.payload
     });
+
+    builder.addCase(updateNoteState.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(updateNoteState.fulfilled, (state, action) => {
+      state.loading = false;
+      state.notes = state.notes.map((note) =>
+        note.id === action.payload.id ? action.payload : note,
+      );
+    });
+
+    builder.addCase(createNote.pending, (state, action) => {
+      state.loading = true;
+    });
+    builder.addCase(createNote.fulfilled, (state, action) => {
+      state.loading = false;
+      state.notes = [...state.notes, action.payload];
+    });
   },
 });
 
 export const {} = noteSlice.actions;
 
-export const selectNotes = (state: RootState) => state.note.notes;
+export const selectNotes = (state: RootState) =>
+  state.note.notes.filter((t) => t.state === ENoteState.ON_GOING);
 export const selectFetchingNoteStatus = (state: RootState) => ({
   loading: state.note.loading,
   errors: state.note.errors,

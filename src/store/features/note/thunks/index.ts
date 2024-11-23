@@ -1,3 +1,5 @@
-import fetchNotes from "./fetchNotesThunk";
+import createNote from './createNoteThunk';
+import fetchNotes from './fetchNotesThunk';
+import updateNoteState from './updateNoteThunk';
 
-export {fetchNotes}
+export { fetchNotes, updateNoteState, createNote };
