@@ -1,6 +1,6 @@
 {
-  "name": "canado",
-  "productName": "canado",
+  "name": "Nacado",
+  "productName": "Nacado",
   "version": "1.0.1",
   "description": "My Electron application description",
   "main": ".webpack/main",
@@ -49,6 +49,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
     "axios": "^1.7.7",
+    "copy-webpack-plugin": "^12.0.2",
     "electron-squirrel-startup": "^1.0.1",
     "postcss": "^8.4.49",
     "postcss-loader": "^8.1.1",

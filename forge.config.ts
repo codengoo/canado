@@ -13,13 +13,23 @@ import { rendererConfig } from './webpack.renderer.config';
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    protocols: [
+      {
+        name: 'Nacado',
+        schemes: ['nacado'],
+      },
+    ],
   },
   rebuildConfig: {},
   makers: [
     new MakerSquirrel({}),
     new MakerZIP({}, ['darwin']),
     new MakerRpm({}),
-    new MakerDeb({}),
+    new MakerDeb({
+      options: {
+        mimeType: ['x-scheme-handler/nacado'],
+      },
+    }),
   ],
   plugins: [
     new AutoUnpackNativesPlugin({}),
@@ -35,7 +45,7 @@ const config: ForgeConfig = {
             preload: {
               js: './src/preload.ts',
             },
-          },
+          }
         ],
       },
     }),

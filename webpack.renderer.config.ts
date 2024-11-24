@@ -1,3 +1,4 @@
+import CopyPlugin from 'copy-webpack-plugin';
 import path from 'path';
 import type { Configuration } from 'webpack';
 import { plugins } from './webpack.plugins';
@@ -11,6 +12,10 @@ rules.push({
     { loader: 'postcss-loader' },
   ],
 });
+
+plugins.push(
+  new CopyPlugin({ patterns: [{ from: 'public', to: '.' }] }),
+);
 
 export const rendererConfig: Configuration = {
   module: {
