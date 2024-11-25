@@ -7,7 +7,7 @@ import {
   updateNoteState,
 } from '@/store/features/note';
 import { ENoteState } from '@/types';
-import React, { KeyboardEvent, useEffect } from 'react';
+import { KeyboardEvent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Item from '../item';
 
@@ -22,7 +22,7 @@ export default function HomeScreen() {
 
   const handlePressEnter = (ev: KeyboardEvent<HTMLInputElement>) => {
     console.log(ev.key);
-    
+
     if (ev.key == 'Enter') {
       const doc = document.querySelector('#add_value') as HTMLInputElement;
       if (doc?.value?.trim().length > 0) {
