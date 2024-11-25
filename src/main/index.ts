@@ -37,7 +37,7 @@ const createWindow = (): void => {
       responseHeaders: {
         ...details.responseHeaders,
         'Content-Security-Policy': [
-          "default-src 'self'; connect-src 'self' http://3.25.58.118:8888; script-src 'self' 'unsafe-eval' http://3.25.58.118:8888; style-src 'self' 'unsafe-inline'; img-src http:",
+          "default-src 'self'; connect-src 'self' http://3.25.58.118:8888; script-src 'self' 'unsafe-eval' http://3.25.58.118:8888; style-src 'self' 'unsafe-inline'; img-src http: file:",
         ],
       },
     });

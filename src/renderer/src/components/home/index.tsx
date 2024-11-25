@@ -47,7 +47,7 @@ export default function HomeScreen() {
   return (
     <div className="flex flex-row bg-secondary rounded-3xl h-screen w-screen">
       <Sidebar />
-      <div className="flex-grow p-4 pl-0 ">
+      <div className="flex-grow">
         <div className="bg-tertiary w-full h-full flex flex-col overflow-x-hidden gap-4 rounded-2xl">
           <div className="flex flex-row justify-end p-2">
             <TabIcon
