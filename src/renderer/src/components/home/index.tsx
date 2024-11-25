@@ -1,4 +1,4 @@
-import { Colors } from '@/app/constants';
+import { Colors } from '@/constants';
 import { useAppDispatch } from '@/hooks';
 import {
   createNote,

@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { RootState } from '../../store';
 import { createNote, fetchNotes, updateNoteState } from './thunks';
 
-interface NoteState {
+export interface NoteState {
   notes: INote[];
   loading: boolean;
   errors: string[];
@@ -49,7 +49,7 @@ export const noteSlice = createSlice({
     builder.addCase(updateNoteState.fulfilled, (state, action) => {
       state.loading = false;
       state.notes = state.notes.map((note) =>
-        note.id === action.payload.id ? action.payload : note,
+        note.id === action.payload?.id ? action.payload : note,
       );
     });
 
@@ -58,7 +58,7 @@ export const noteSlice = createSlice({
     });
     builder.addCase(createNote.fulfilled, (state, action) => {
       state.loading = false;
-      state.notes = [...state.notes, action.payload];
+      state.notes = [...state.notes, action.payload!];
     });
   },
 });
