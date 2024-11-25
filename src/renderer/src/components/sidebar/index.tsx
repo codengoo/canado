@@ -5,7 +5,7 @@ import TabIcon from '../tab_icon';
 
 export default function Sidebar() {
   return (
-    <div className="flex flex-col justify-between p-4 items-center">
+    <div className="flex flex-col justify-between p-4 items-center draggable">
       <div className="bg-primary p-2 w-10 h-10 flex justify-center place-items-center rounded-full">
         <img src={LogoUrl} className="w-10 h-10 object-scale-down" />
       </div>
