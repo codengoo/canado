@@ -1,5 +1,5 @@
 import { store } from '@/store';
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 
 interface IStoreProvider {
