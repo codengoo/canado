@@ -1,5 +1,6 @@
 import { Colors } from '@/constants';
 import { GoHorizontalRule, GoX } from 'react-icons/go';
+import { HiOutlineSearch } from 'react-icons/hi';
 import {
   HiOutlineArrowLeft,
   HiOutlineArrowRight,
@@ -7,9 +8,11 @@ import {
   HiOutlineUserCircle,
 } from 'react-icons/hi2';
 import TabIcon from '../tab_icon';
-import { HiOutlineSearch } from 'react-icons/hi';
 
 export default function TitleBar() {
+  const closeApp = () => window.api.closeWindows();
+  const minimizeApp = () => window.api.minimizeWindows();
+
   return (
     <div className="flex flex-row justify-between p-2 draggable gap-2">
       <div className="flex flex-row">
@@ -58,6 +61,7 @@ export default function TitleBar() {
             color={Colors.secondary}
             size={16}
             invert
+            onClick={minimizeApp}
           />
           <TabIcon
             icon={GoX}
@@ -65,6 +69,7 @@ export default function TitleBar() {
             size={16}
             invert
             danger
+            onClick={closeApp}
           />
         </div>
       </div>

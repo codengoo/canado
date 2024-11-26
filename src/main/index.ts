@@ -1,5 +1,5 @@
 import { is } from '@electron-toolkit/utils';
-import { app, BrowserWindow, dialog } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import path, { join } from 'path';
 
 if (process.defaultApp) {
@@ -77,5 +77,13 @@ if (!gotTheLock) {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
     }
+  });
+
+  ipcMain.on('close-win', () => {
+    app.quit();
+  });
+
+  ipcMain.on('minimize-win', () => {
+    windows?.minimize();
   });
 }
