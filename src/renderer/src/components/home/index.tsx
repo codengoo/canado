@@ -7,7 +7,7 @@ import {
   updateNoteState,
 } from '@/store/features/note';
 import { ENoteState } from '@/types';
-import { KeyboardEvent, useEffect } from 'react';
+import { DragEvent, KeyboardEvent, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ItemNote from '../item';
 import Sidebar from '../sidebar';
@@ -15,7 +15,7 @@ import TitleBar from '../title_bar';
 
 export default function HomeScreen() {
   const dispatch = useAppDispatch();
-  const { errors, loading } = useSelector(selectFetchingNoteStatus);
+  const {} = useSelector(selectFetchingNoteStatus);
   const notes = useSelector(selectNotes);
 
   const handleItemDone = async (id: string) => {
@@ -32,6 +32,17 @@ export default function HomeScreen() {
     }
   };
 
+  const dragfile = (event: DragEvent) => {
+    event.preventDefault();
+    return false;
+    // window.api.startDrag('hello.ts');
+  };
+
+  const dragoverfile = (event: DragEvent) => {
+    event.preventDefault();
+    return false;
+  };
+
   useEffect(() => {
     dispatch(fetchNotes());
   }, []);
@@ -42,7 +53,11 @@ export default function HomeScreen() {
       <div className="flex-grow bg-tertiary flex flex-col overflow-x-hidden gap-4 rounded-2xl">
         <TitleBar />
 
-        <div className="p-4 flex-grow overflow-hidden flex flex-col gap-4">
+        <div
+          className="p-4 flex-grow overflow-hidden flex flex-col gap-4"
+          onDrop={dragfile}
+          onDragOver={dragoverfile}
+        >
           <div className="flex-grow overflow-y-scroll overflow-x-hidden space-y-4 columns-2 ">
             {notes.map((item) => (
               <ItemNote

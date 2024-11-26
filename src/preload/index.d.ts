@@ -6,6 +6,7 @@ declare global {
     api: {
       closeWindows: () => void;
       minimizeWindows: () => void;
+      startDrag: (fileName: string) => void;
     };
   }
 }

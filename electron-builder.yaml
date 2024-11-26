@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: electron-app
+appId: com.nacado.app
+productName: Nacado
 directories:
   buildResources: build
 files:
@@ -12,7 +12,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: electron-app
+  executableName: Nacado
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
