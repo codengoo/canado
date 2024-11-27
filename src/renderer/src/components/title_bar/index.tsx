@@ -1,4 +1,6 @@
 import { Colors } from '@/constants';
+import { useAppSelector } from '@/hooks';
+import { selectCurrentUser } from '@/store/features/user';
 import { GoHorizontalRule, GoX } from 'react-icons/go';
 import { HiOutlineSearch } from 'react-icons/hi';
 import {
@@ -12,6 +14,8 @@ import TabIcon from '../tab_icon';
 export default function TitleBar() {
   const closeApp = () => window.api.closeWindows();
   const minimizeApp = () => window.api.minimizeWindows();
+
+  const user = useAppSelector(selectCurrentUser);
 
   return (
     <div className="flex flex-row justify-between p-2 draggable gap-2">
@@ -46,13 +50,23 @@ export default function TitleBar() {
             invert
             padding="sm"
           />
-          <TabIcon
-            icon={HiOutlineUserCircle}
-            color={Colors.secondary}
-            size={22}
-            invert
-            padding="sm"
-          />
+          {!!user ? (
+            <div className="rounded-full">
+              <img
+                alt="user-avatar"
+                src={user.avatar}
+                className="object-scale-down"
+              />
+            </div>
+          ) : (
+            <TabIcon
+              icon={HiOutlineUserCircle}
+              color={Colors.secondary}
+              size={22}
+              invert
+              padding="sm"
+            />
+          )}
         </div>
 
         <div className="flex flex-row">

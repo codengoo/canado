@@ -1,4 +1,3 @@
-export * from  "./thunks"
-export * from "./noteSlice"
-
-export {default as noteReducer} from "./noteSlice";
+export * from './note.slice';
+export { default as noteReducer } from './note.slice';
+export * from './thunks';

@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { noteReducer } from './features/note';
+import { userReducer } from './features/user';
 
 export const store = configureStore({
   reducer: {
-    note: noteReducer
+    note: noteReducer,
+    user: userReducer,
   },
 });
 

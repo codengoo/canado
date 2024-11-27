@@ -2,7 +2,6 @@ import { useAppDispatch } from '@/hooks';
 import {
   createNote,
   fetchNotes,
-  selectFetchingNoteStatus,
   selectNotes,
   updateNoteState,
 } from '@/store/features/note';
@@ -15,7 +14,8 @@ import TitleBar from '../title_bar';
 
 export default function HomeScreen() {
   const dispatch = useAppDispatch();
-  const {} = useSelector(selectFetchingNoteStatus);
+  // const {} = useSelector(selectFetchingNoteStatus);
+
   const notes = useSelector(selectNotes);
 
   const handleItemDone = async (id: string) => {

@@ -17,3 +17,12 @@ export interface IResponseData<T = any> {
   data?: T;
   error?: string[];
 }
+
+export interface IUser {
+  id: string;
+  sub: string;
+  username: string;
+  email: string;
+  displayName: string;
+  avatar: string;
+}

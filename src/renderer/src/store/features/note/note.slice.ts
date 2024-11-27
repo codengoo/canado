@@ -1,6 +1,5 @@
 import { ENoteState, INote } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
-import type { RootState } from '../../store';
 import { createNote, fetchNotes, updateNoteState } from './thunks';
 
 export interface NoteState {
@@ -29,6 +28,15 @@ export const noteSlice = createSlice({
     // incrementByAmount: (state, action: PayloadAction<number>) => {
     //   state.value += action.payload
     // }
+  },
+  selectors: {
+    selectNotes: (state) => {
+      return state.notes.filter((t) => t.state === ENoteState.ON_GOING);
+    },
+    selectFetchingNoteStatus: (state) => ({
+      loading: state.loading,
+      errors: state.errors,
+    }),
   },
   extraReducers: (builder) => {
     builder.addCase(fetchNotes.pending, (state, action) => {
@@ -64,13 +72,6 @@ export const noteSlice = createSlice({
 });
 
 export const {} = noteSlice.actions;
-
-export const selectNotes = (state: RootState) => {
-  return state.note.notes.filter((t) => t.state === ENoteState.ON_GOING);
-};
-export const selectFetchingNoteStatus = (state: RootState) => ({
-  loading: state.note.loading,
-  errors: state.note.errors,
-});
+export const { selectFetchingNoteStatus, selectNotes } = noteSlice.selectors;
 
 export default noteSlice.reducer;
