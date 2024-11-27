@@ -21,9 +21,9 @@ export default function HomeScreen() {
 
         <div className="p-4 flex-grow overflow-hidden flex flex-col gap-4">
           <div className="flex-grow overflow-y-scroll relative">
-            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-tertiary to-transparent pointer-events-none"></div>
+            {/* <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-tertiary to-transparent pointer-events-none"></div> */}
             <NoteContainer />
-            <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-tertiary to-transparent pointer-events-none"></div>
+            {/* <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-tertiary to-transparent pointer-events-none"></div> */}
           </div>
 
           <div className="flex-none">
