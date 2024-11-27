@@ -1,16 +1,17 @@
+import { Sidebar, TitleBar } from '@/components/layout';
 import { useAppDispatch } from '@/hooks';
 import { fetchNotes } from '@/store/features/note';
+import { fetchCurrentUser } from '@/store/features/user';
 import { useEffect } from 'react';
-import InputNote from '../input_note';
-import NoteContainer from '../note_container';
-import Sidebar from '../sidebar';
-import TitleBar from '../title_bar';
+import InputNote from '../components/input_note';
+import NoteContainer from '../components/note_container';
 
 export default function HomeScreen() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchNotes());
+    dispatch(fetchCurrentUser());
   }, []);
 
   return (

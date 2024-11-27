@@ -1,6 +1,6 @@
 import { IUser } from '@/types';
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCurrUser } from './thunks';
+import { fetchCurrentUser } from './thunks';
 
 export interface UserState {
   user?: IUser;
@@ -33,14 +33,16 @@ export const userSlice = createSlice({
     selectIsLogin: (state) => !!state.user,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchCurrUser.pending, (state) => {
+    builder.addCase(fetchCurrentUser.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchCurrUser.fulfilled, (state, action) => {
+    builder.addCase(fetchCurrentUser.fulfilled, (state, action) => {
       state.loading = false;
+      console.log(action);
+      
       state.user = action.payload;
     });
-    builder.addCase(fetchCurrUser.rejected, (state) => {
+    builder.addCase(fetchCurrentUser.rejected, (state) => {
       state.loading = false;
       state.user = undefined;
     });

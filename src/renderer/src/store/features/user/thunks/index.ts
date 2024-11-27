@@ -1,3 +1,2 @@
-import fetchCurrUser from './fetchCurrUser';
+export * from './fetchCurrUser';
 
-export { fetchCurrUser };

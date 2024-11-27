@@ -1,4 +1,4 @@
-import { Colors } from '@/constants';
+import { BtnAsset } from '@/components/ui';
 import { useAppSelector } from '@/hooks';
 import { selectCurrentUser } from '@/store/features/user';
 import { GoHorizontalRule, GoX } from 'react-icons/go';
@@ -9,7 +9,6 @@ import {
   HiOutlineBell,
   HiOutlineUserCircle,
 } from 'react-icons/hi2';
-import TabIcon from '../tab_icon';
 
 export default function TitleBar() {
   const closeApp = () => window.api.closeWindows();
@@ -19,21 +18,13 @@ export default function TitleBar() {
 
   return (
     <div className="flex flex-row justify-between p-2 draggable gap-2">
+      {/* Navigation */}
       <div className="flex flex-row">
-        <TabIcon
-          icon={HiOutlineArrowLeft}
-          color={Colors.secondary}
-          size={16}
-          invert
-        />
-        <TabIcon
-          icon={HiOutlineArrowRight}
-          color={Colors.secondary}
-          size={16}
-          invert
-        />
+        <BtnAsset icon={HiOutlineArrowLeft} />
+        <BtnAsset icon={HiOutlineArrowRight} />
       </div>
 
+      {/* Search */}
       <div className="bg-secondary/20 w-1/2 rounded-lg overflow-hidden flex flex-row items-center no-draggable px-2 hover:bg-secondary/30 border border-secondary/50">
         <input
           placeholder="search here"
@@ -41,50 +32,21 @@ export default function TitleBar() {
         />
         <HiOutlineSearch size={20} className="text-secondary" />
       </div>
+
+      {/* User action center */}
       <div className="flex flex-row gap-4">
         <div className="flex flex-row">
-          <TabIcon
-            icon={HiOutlineBell}
-            color={Colors.secondary}
-            size={22}
-            invert
-            padding="sm"
-          />
+          <BtnAsset icon={HiOutlineBell} iconSize={22} />
           {!!user ? (
-            <div className="rounded-full">
-              <img
-                alt="user-avatar"
-                src={user.avatar}
-                className="object-scale-down"
-              />
-            </div>
+            <BtnAsset image={user.avatar} />
           ) : (
-            <TabIcon
-              icon={HiOutlineUserCircle}
-              color={Colors.secondary}
-              size={22}
-              invert
-              padding="sm"
-            />
+            <BtnAsset icon={HiOutlineUserCircle} iconSize={22} />
           )}
         </div>
 
         <div className="flex flex-row">
-          <TabIcon
-            icon={GoHorizontalRule}
-            color={Colors.secondary}
-            size={16}
-            invert
-            onClick={minimizeApp}
-          />
-          <TabIcon
-            icon={GoX}
-            color={Colors.secondary}
-            size={16}
-            invert
-            danger
-            onClick={closeApp}
-          />
+          <BtnAsset icon={GoHorizontalRule} onClick={minimizeApp} />
+          <BtnAsset icon={GoX} onClick={closeApp} type="danger" />
         </div>
       </div>
     </div>

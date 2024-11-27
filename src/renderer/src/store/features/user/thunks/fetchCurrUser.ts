@@ -2,7 +2,7 @@ import { IResponseData, IUser } from '@/types';
 import axios from '@/utils/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-const getCurrentUser = createAsyncThunk('user/getCurrentUser', async () => {
+const fetchCurrentUser = createAsyncThunk('user/getCurrentUser', async () => {
   const response = await axios.get(`/auth`);
 
   if (response.status != 200) throw new Error('Unauthorized');
@@ -12,4 +12,4 @@ const getCurrentUser = createAsyncThunk('user/getCurrentUser', async () => {
   else return;
 });
 
-export default getCurrentUser;
+export { fetchCurrentUser };

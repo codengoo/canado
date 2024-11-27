@@ -1,7 +1,7 @@
 import LogoUrl from '@/assets/images/logo.png';
+import { TabIcon } from '@/components/ui';
 import { HiArchive, HiCalendar, HiCog, HiHome } from 'react-icons/hi';
 import { HiArrowRightOnRectangle, HiBookmark } from 'react-icons/hi2';
-import TabIcon from '../tab_icon';
 
 export default function Sidebar() {
   return (

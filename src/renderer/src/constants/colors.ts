@@ -3,6 +3,7 @@ const Colors = {
   secondary: '#719191',
   tertiary: '#eaf1f1',
   red: '#F43F5E',
+  white: '#fbfbfb',
 };
 
 export { Colors };

@@ -1,6 +1,6 @@
 import { Colors } from '@/constants';
 import { HiOutlineCheck } from 'react-icons/hi';
-import TabIcon from '../tab_icon';
+import TabIcon from '../../../components/ui/tab_icon';
 
 interface IItemProps {
   title: string;

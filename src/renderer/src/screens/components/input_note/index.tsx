@@ -1,4 +1,3 @@
-import { Colors } from '@/constants';
 import { useAppDispatch } from '@/hooks';
 import { createNote } from '@/store/features/note';
 import { FormEvent, KeyboardEvent } from 'react';
@@ -8,7 +7,7 @@ import {
   HiMiniSwatch,
   HiPaperAirplane,
 } from 'react-icons/hi2';
-import TabIcon from '../tab_icon';
+import { BtnAsset } from '../../../components/ui';
 
 export default function InputNote() {
   const dispatch = useAppDispatch();
@@ -48,36 +47,11 @@ export default function InputNote() {
 
       <div className="flex justify-between">
         <div className="flex">
-          <TabIcon
-            icon={HiMiniPaperClip}
-            color={Colors.secondary}
-            invert
-            size={20}
-            padding="sm"
-          />
-          <TabIcon
-            icon={HiMiniMicrophone}
-            color={Colors.secondary}
-            invert
-            size={20}
-            padding="sm"
-          />
-          <TabIcon
-            icon={HiMiniSwatch}
-            color={Colors.secondary}
-            invert
-            size={20}
-            padding="sm"
-          />
+          <BtnAsset icon={HiMiniPaperClip} iconSize={20} />
+          <BtnAsset icon={HiMiniMicrophone} iconSize={20} />
+          <BtnAsset icon={HiMiniSwatch} iconSize={20} />
         </div>
-
-        <TabIcon
-          icon={HiPaperAirplane}
-          color={Colors.secondary}
-          invert
-          size={20}
-          padding="sm"
-        />
+        <BtnAsset icon={HiPaperAirplane} iconSize={20} />
       </div>
     </div>
   );
