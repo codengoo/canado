@@ -1,9 +1,9 @@
-import { INote, IResponseData } from '@/types';
+import { ENoteState, INote, IResponseData } from '@/types';
 import axios from '@/utils/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchNotes = createAsyncThunk('note/fetchAll', async () => {
-  const response = await axios.get('/note');
+  const response = await axios.get(`/note?status=${ENoteState.ON_GOING}`);
   // if (response.status != 200) {
   // }
 

@@ -1,4 +1,6 @@
-import React from 'react';
+import { Colors } from '@/constants';
+import { HiOutlineCheck } from 'react-icons/hi';
+import TabIcon from '../tab_icon';
 
 interface IItemProps {
   title: string;
@@ -7,24 +9,29 @@ interface IItemProps {
   onDone?: (id: string) => void;
 }
 
-export default function Item({ title, content, onDone, id }: IItemProps) {
+export default function ItemNote({ title, content, onDone, id }: IItemProps) {
   const handleDoneClick = () => {
     onDone && onDone(id);
   };
 
   return (
-    <div className="w-full bg-slate-100 p-5 rounded-md border-slate-300 border flex items-center justify-between">
-      <div>
-        <h1>{title}</h1>
-        <p>{content}</p>
+    <div className="bg-primary p-4 rounded-xl border-secondary/50 border h-fit break-inside-avoid ">
+      <div className="flex flex-row w-full gap-4">
+        <h1 className="text-xl font-semibold flex-grow text-ellipsis text-gray-800">
+          {title}
+        </h1>
+        <div className='flex-none'>
+        <TabIcon
+          icon={HiOutlineCheck}
+          color={Colors.secondary}
+          invert
+          size={20}
+          background
+          onClick={handleDoneClick}
+        />
+        </div>
       </div>
-
-      <button
-        className="bg-blue-500 rounded-md text-white font-semibold px-3 py-2"
-        onClick={handleDoneClick}
-      >
-        Complete
-      </button>
+      <p className="text-sm">{content}</p>
     </div>
   );
 }

@@ -65,8 +65,9 @@ export const noteSlice = createSlice({
 
 export const {} = noteSlice.actions;
 
-export const selectNotes = (state: RootState) =>
-  state.note.notes.filter((t) => t.state === ENoteState.ON_GOING);
+export const selectNotes = (state: RootState) => {
+  return state.note.notes.filter((t) => t.state === ENoteState.ON_GOING);
+};
 export const selectFetchingNoteStatus = (state: RootState) => ({
   loading: state.note.loading,
   errors: state.note.errors,

@@ -1,5 +1,5 @@
 import { is } from '@electron-toolkit/utils';
-import { app, BrowserWindow, dialog } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain } from 'electron';
 import path, { join } from 'path';
 
 if (process.defaultApp) {
@@ -37,7 +37,7 @@ const createWindow = (): void => {
       responseHeaders: {
         ...details.responseHeaders,
         'Content-Security-Policy': [
-          "default-src 'self'; connect-src 'self' http://3.25.58.118:8888; script-src 'self' 'unsafe-eval' http://3.25.58.118:8888; style-src 'self' 'unsafe-inline'; img-src http:",
+          "default-src 'self'; connect-src 'self' http://3.25.58.118:8888; script-src 'self' 'unsafe-eval' 'unsafe-inline' http://3.25.58.118:8888; style-src 'self' 'unsafe-inline'; img-src http: file:",
         ],
       },
     });
@@ -77,5 +77,13 @@ if (!gotTheLock) {
     if (BrowserWindow.getAllWindows().length === 0) {
       createWindow();
     }
+  });
+
+  ipcMain.on('close-win', () => {
+    app.quit();
+  });
+
+  ipcMain.on('minimize-win', () => {
+    windows?.minimize();
   });
 }
