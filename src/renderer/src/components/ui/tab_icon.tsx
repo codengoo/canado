@@ -1,6 +1,6 @@
 import { Colors } from '@/constants';
 import { IconType } from 'react-icons';
-import BtnAsset from '../btn_asset';
+import BtnAsset from './btn_asset';
 
 interface ITabIcon {
   icon: IconType;

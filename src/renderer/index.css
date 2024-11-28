@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 .draggable {
-    -webkit-app-region: drag;
+  -webkit-app-region: drag;
 }
 
 .no-draggable {
-    -webkit-app-region: no-drag;
+  -webkit-app-region: no-drag;
 }

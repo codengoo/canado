@@ -1,5 +1,5 @@
 import { INote, IResponseData } from '@/types';
-import axios from '@/utils/axios';
+import axios from '../../../../libs/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 interface ICreateNote {

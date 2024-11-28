@@ -1,14 +1,9 @@
-import { BtnAsset } from '@/components/ui';
+import { BtnAsset, Popover, PopoverContent, PopoverTrigger } from '@/components/ui';
 import { useAppSelector } from '@/hooks';
 import { selectCurrentUser } from '@/store/features/user';
 import { GoHorizontalRule, GoX } from 'react-icons/go';
-import { HiOutlineSearch } from 'react-icons/hi';
-import {
-  HiOutlineArrowLeft,
-  HiOutlineArrowRight,
-  HiOutlineBell,
-  HiOutlineUserCircle,
-} from 'react-icons/hi2';
+import { HiLogin, HiOutlineSearch } from 'react-icons/hi';
+import { HiOutlineArrowLeft, HiOutlineArrowRight, HiOutlineBell, HiOutlineUserCircle } from 'react-icons/hi2';
 
 export default function TitleBar() {
   const closeApp = () => window.api.closeWindows();
@@ -40,7 +35,17 @@ export default function TitleBar() {
           {!!user ? (
             <BtnAsset image={user.avatar} />
           ) : (
-            <BtnAsset icon={HiOutlineUserCircle} iconSize={22} />
+            <Popover>
+              <PopoverTrigger>
+                <BtnAsset icon={HiOutlineUserCircle} iconSize={22} />
+              </PopoverTrigger>
+
+              <PopoverContent className="w-48">
+                <a className="block hover:bg-secondary/30 transition-all rounded-md px-2 py-1 font-semibold cursor-pointer">
+                  <HiLogin /> Login
+                </a>
+              </PopoverContent>
+            </Popover>
           )}
         </div>
 

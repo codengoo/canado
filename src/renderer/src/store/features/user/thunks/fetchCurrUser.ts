@@ -1,5 +1,5 @@
 import { IResponseData, IUser } from '@/types';
-import axios from '@/utils/axios';
+import axios from '../../../../libs/axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const fetchCurrentUser = createAsyncThunk('user/getCurrentUser', async () => {
